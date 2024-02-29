@@ -3,38 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba HTML</title>
+    <title>Dino Jump</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
+        #game-container {
+            width: 500px;
+            height: 200px;
+            border: 1px solid #000;
+            position: relative;
         }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
+        #dinosaur {
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            position: absolute;
+            bottom: 0;
+            left: 50px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>¡Hola, mundo!</h1>
-    <p>Este es un ejemplo básico de página HTML.</p>
-    <p>Puedes modificar este código para crear tu propio contenido.</p>
+<div id="game-container">
+    <div id="dinosaur"></div>
 </div>
+
+<script>
+    const dinosaur = document.getElementById('dinosaur');
+
+    // Controlar el salto cuando se presiona la tecla de espacio
+    document.addEventListener('keydown', function(event) {
+        if (event.code === 'Space') {
+            jump();
+        }
+    });
+
+    // Función para hacer que el dinosaurio salte
+    function jump() {
+        let height = 0;
+        const jumpInterval = setInterval(function() {
+            if (height >= 100) {
+                clearInterval(jumpInterval);
+                // Descenso después del salto
+                const fallInterval = setInterval(function() {
+                    if (height <= 0) {
+                        clearInterval(fallInterval);
+                    } else {
+                        height -= 5;
+                        dinosaur.style.bottom = height + 'px';
+                    }
+                }, 20);
+            } else {
+                height += 5;
+                dinosaur.style.bottom = height + 'px';
+            }
+        }, 20);
+    }
+</script>
 
 </body>
 </html>
+
