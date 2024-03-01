@@ -1,4 +1,4 @@
-onst dinosaur = document.getElementById('dinosaur');
+const dinosaur = document.getElementById('dinosaur');
 
 // Controlar el salto cuando se presiona la tecla de espacio
 document.addEventListener('keydown', function(event) {
