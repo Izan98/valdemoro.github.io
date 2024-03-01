@@ -4,22 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dino Jump</title>
-    <style>
-        #game-container {
-            width: 500px;
-            height: 200px;
-            border: 1px solid #000;
-            position: relative;
-        }
-        #dinosaur {
-            width: 50px;
-            height: 50px;
-            background-color: #333;
-            position: absolute;
-            bottom: 0;
-            left: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -27,39 +12,7 @@
     <div id="dinosaur"></div>
 </div>
 
-<script>
-    const dinosaur = document.getElementById('dinosaur');
-
-    // Controlar el salto cuando se presiona la tecla de espacio
-    document.addEventListener('keydown', function(event) {
-        if (event.code === 'Space') {
-            jump();
-        }
-    });
-
-    // Función para hacer que el dinosaurio salte
-    function jump() {
-        let height = 0;
-        const jumpInterval = setInterval(function() {
-            if (height >= 100) {
-                clearInterval(jumpInterval);
-                // Descenso después del salto
-                const fallInterval = setInterval(function() {
-                    if (height <= 0) {
-                        clearInterval(fallInterval);
-                    } else {
-                        height -= 5;
-                        dinosaur.style.bottom = height + 'px';
-                    }
-                }, 20);
-            } else {
-                height += 5;
-                dinosaur.style.bottom = height + 'px';
-            }
-        }, 20);
-    }
-</script>
+<script src="js/game.js"></script>
 
 </body>
 </html>
-
